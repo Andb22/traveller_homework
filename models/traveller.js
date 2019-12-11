@@ -15,11 +15,21 @@ Traveller.prototype.getJourneyEndLocations = function () {
 };
 
 Traveller.prototype.getJourneysByTransport = function (transport) {
-
+  return this.journeys.filter((journey) => {
+    return journey.transport == transport;
+  })
 };
 
 Traveller.prototype.getJourneysByMinDistance = function (minDistance) {
+  let requiredjourneys = []
 
+  for (const journey of this.journeys) {
+    if (journey.distance > minDistance) {
+      requiredjourneys.push(journey);
+    }
+  }
+
+  return requiredjourneys;
 };
 
 Traveller.prototype.calculateTotalDistanceTravelled = function () {
